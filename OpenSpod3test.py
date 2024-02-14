@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # 
-# import datetime, time
+import datetime, time
+import re
 # import gspread
 # from google.auth.transport.requests import AuthorizedSession
 # from google.oauth2 import service_account
@@ -26,6 +27,7 @@ data=data.rstrip()
 
 # #TASK3  remove final quote 
 data1=str(data)
+data2=re.findall(r'\d+',data1)
 # data1=data1.rstrip("'")
 print(data1)
 print(type(data1))
@@ -150,7 +152,7 @@ print(type(li))
 # sheet = gc.open("Spod1")
 # worksheet = sheet.worksheet("openSpod1")
 # 
-# time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 # values =[time, MAC_A, ESP_ID, n_VOC_A, n_VOC_B, n_VOC_C, VOC_ave, VOC_x, VOC_y, VOC_r, VOC_deg, VOC_rad,
 #          n_P_A, n_P_B, n_P_C, P_ave, P_x, P_y, P_r, P_deg, P_rad, n_T_A, n_T_B, n_T_C, T_ave, T_x, T_y, T_r,
 #          T_deg, T_rad, n_RH_A, n_RH_B, n_RH_C, RH_ave, RH_x, RH_y, RH_r, RH_deg, RH_rad
@@ -164,7 +166,10 @@ print(type(li))
 # #note how we removed brackets from the list when we converted to strings
 Spod3Backup = open("newbackup.csv","a")
 #Spod3Backup.write("\n")
-Spod3Backup.write(str(li)[1:-1])
+Spod3Backup.write(time)
+Spod3Backup.write(',')
+# Spod3Backup.write(str(li)[1:-1])
+Spod3Backup.write(str(data2)[1:-1])
 Spod3Backup.write("\n")
 Spod3Backup.close()
 # 
